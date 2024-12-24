@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import "./ImageGallery.css";
 
 const images = [
@@ -34,13 +35,16 @@ const ImageGallery = () => {
   return (
     <div className="gallery-container">
       {images.map((image, index) => (
-        <div
+        <motion.div
           key={index}
           className="gallery-item"
           onClick={() => openModal(image)}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: index * 0.2 }}
         >
           <img src={image} alt={`Gallery item ${index + 1}`} />
-        </div>
+        </motion.div>
       ))}
 
       {isModalOpen && (
